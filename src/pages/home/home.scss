@@ -1,5 +1,10 @@
 page-home {
 
+    .button{
+        padding: 25px;
+        background-color: rgb(161, 160, 160);
+    }
+
     .container-buttons{
         width: 100%;
         text-align: center;
@@ -13,4 +18,12 @@ page-home {
         margin-top: 50px;
         margin-bottom: 40px;
     }
+    .input{
+        padding-top: 15px;
+    }
+    .showAlert{
+        background-color: slateblue;
+    }
+
 }
+

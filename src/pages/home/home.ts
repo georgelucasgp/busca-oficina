@@ -30,10 +30,14 @@ export class HomePage {
     this.afAuth.auth.signInWithEmailAndPassword(
       this.loginForm.value.email, this.loginForm.value.password)
       .then(()=> {
-        this.showAlert('Usuário autenticado', '');
         this.navCtrl.setRoot('start-page')
       
       })
+      .catch((error) => {
+        if(error.code == 'auth/user-not-found'){
+          this.showAlert('Erro','Email não cadastrado');
+        }
+        })
       .catch((error)=>{
         if(error.code == 'auth/wrong-password'){
           this.showAlert('Erro','Senha incorreta, digite novamente.');
