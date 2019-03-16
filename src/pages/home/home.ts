@@ -5,10 +5,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
 
+
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
-})
+  templateUrl: 'home.html'})
 export class HomePage {
 
   loginForm: FormGroup;
@@ -31,19 +31,18 @@ export class HomePage {
       this.loginForm.value.email, this.loginForm.value.password)
       .then(()=> {
         this.navCtrl.setRoot('start-page')
-      
+
       })
       .catch((error) => {
         if(error.code == 'auth/user-not-found'){
           this.showAlert('Erro','Email não cadastrado');
-        }
+        }else{
+            if(error.code == 'auth/wrong-password'){
+              this.showAlert('Erro','Senha incorreta, digite novamente.');
+              this.loginForm.controls['password'].setValue(null);
+          }
+            }
         })
-      .catch((error)=>{
-        if(error.code == 'auth/wrong-password'){
-          this.showAlert('Erro','Senha incorreta, digite novamente.');
-          this.loginForm.controls['password'].setValue(null);
-        }
-      })
   }
 
   showAlert(title: string, subtitle: string) {
