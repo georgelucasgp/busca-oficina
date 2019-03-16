@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cadastrar Oficina</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+        <ion-item>
+            <ion-input type="text" placeholder="Razão Social"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+            <ion-input type="text" placeholder="Fantasia"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="number" placeholder="CNPJ"></ion-input>
+        </ion-item>
+
+        <ion-item>
+              <ion-label>Categoria</ion-label>
+              <ion-select [(ngModel)]="Categorias" multiple="true" cancelText="Voltar" okText="Ok">
+                <ion-option value="bacon" selected="true">Bacon</ion-option>
+                <ion-option value="olives">Black Olives</ion-option>
+                <ion-option value="xcheese" selected="true">Extra Cheese</ion-option>
+                <ion-option value="peppers">Green Peppers</ion-option>
+                <ion-option value="mushrooms">Mushrooms</ion-option>
+                <ion-option value="onions">Onions</ion-option>
+                <ion-option value="pepperoni">Pepperoni</ion-option>
+                <ion-option value="pineapple">Pineapple</ion-option>
+                <ion-option value="sausage">Sausage</ion-option>
+                <ion-option value="Spinach">Spinach</ion-option>
+              </ion-select>
+            </ion-item>
+       
+        <ion-item>
+            <ion-input type="text" placeholder="CEP"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="number" placeholder="Endereço"></ion-input>
+        </ion-item>
+      
+      </ion-list>
+</ion-content>
