@@ -1,0 +1,8 @@
+{
+  "name": "busca-oficina",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
