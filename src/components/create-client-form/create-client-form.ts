@@ -2,6 +2,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'create-client-form',
@@ -13,7 +14,8 @@ export class CreateClientFormComponent {
 
   constructor(
     public formbuilder: FormBuilder,
-    public http: Http
+    public http: Http,
+    public db: AngularFireDatabase
   ) {
     this.createClientForm = this.formbuilder.group({
       razaosocial: [null, [Validators.required, Validators.minLength(10)]],
@@ -53,7 +55,11 @@ export class CreateClientFormComponent {
   }
 
   cadastrarCliente() {
-    console.log(this.createClientForm.value);
+    this.db.database.ref('/Client').push(this.createClientForm.value)
+    .then(() => {
+      console.log('salvou');
+      this.createClientForm.reset();
+    })
   }
 
 }

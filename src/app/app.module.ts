@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { StartPageModule } from './../pages/start/start.module';
 import { StartPage } from './../pages/start/start';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +13,7 @@ import { firebaseConfig } from '../environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -35,6 +37,7 @@ import { HttpModule } from '@angular/http'
     StatusBar,
     SplashScreen,
     AngularFireAuth,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
