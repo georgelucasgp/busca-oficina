@@ -11,7 +11,7 @@ import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from '../environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { HttpModule } from '@angular/http'
 @NgModule({
   declarations: [
     MyApp,
@@ -22,7 +22,8 @@ import { IonicStorageModule } from '@ionic/storage';
     AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    StartPageModule
+    StartPageModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

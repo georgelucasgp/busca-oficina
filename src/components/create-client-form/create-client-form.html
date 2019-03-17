@@ -15,11 +15,11 @@
   </ion-item>
 
   <ion-item>
-    <ion-input type="number" placeholder="CEP" formControlName="cep"></ion-input>
+    <ion-input type="number" placeholder="CEP" formControlName="cep" (ionBlur)="buscaCep()"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Endereço" formControlName="endereco"></ion-input>
+    <ion-input type="text" placeholder="Rua" formControlName="rua" disabled></ion-input>
   </ion-item>
 
   <ion-item>
@@ -27,15 +27,15 @@
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Bairro" formControlName="bairro"></ion-input>
+    <ion-input type="text" placeholder="Bairro" formControlName="bairro" disabled></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Cidade" formControlName="cidade"></ion-input>
+    <ion-input type="text" placeholder="Cidade" formControlName="cidade" disabled></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Estado" formControlName="estado"></ion-input>
+    <ion-input type="text" placeholder="Estado" formControlName="estado" disabled></ion-input>
   </ion-item>
 
   <ion-item>
@@ -44,7 +44,7 @@
 
   <ion-item>
     <ion-label>Categoria</ion-label>
-    <ion-select formControlName="categoria" multiple="true" cancelText="Voltar" okText="Ok">
+    <ion-select formControlName="categoria" multiple="true" cancelText="Voltar" okText="Ok" placeholder="Selecione">
       <ion-option value="mecanica">Mecânica</ion-option>
       <ion-option value="eletrica">Elétrica</ion-option>
       <ion-option value="lanternagem">Lanternagem</ion-option>
