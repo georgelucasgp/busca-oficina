@@ -1,5 +1,5 @@
+import { FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
-
 
 @Component({
   selector: 'create-client-form',
@@ -7,11 +7,10 @@ import { Component } from '@angular/core';
 })
 export class CreateClientFormComponent {
 
-  text: string;
+  createClientForm: FormGroup
 
   constructor() {
-    console.log('Hello CreateClientFormComponent Component');
-    this.text = 'Hello World';
+
   }
 
 }

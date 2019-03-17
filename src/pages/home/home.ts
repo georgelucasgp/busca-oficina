@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
-
 import { Storage } from '@ionic/storage';
 import { ReturnStatement } from '@angular/compiler';
 

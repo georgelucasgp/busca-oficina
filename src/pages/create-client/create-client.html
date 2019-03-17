@@ -5,40 +5,7 @@
 </ion-header>
 
 <ion-content padding>
+  
+    <create-client-form></create-client-form>
 
-  <ion-list>
-
-        <ion-item>
-            <ion-input type="text" placeholder="Razão Social"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-            <ion-input type="text" placeholder="Fantasia"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-input type="number" placeholder="CNPJ"></ion-input>
-        </ion-item>
-
-        <ion-item>
-              <ion-label>Categoria</ion-label>
-              <ion-select [(ngModel)]="Categorias" multiple="true" cancelText="Voltar" okText="Ok">
-                <ion-option value="mecanica">Mecânica</ion-option>
-                <ion-option value="eletrica">Elétrica</ion-option>
-                <ion-option value="lanternagem">Lanternagem</ion-option>
-                <ion-option value="comercio-pneu">Comércio de Pneu</ion-option>
-                <ion-option value="borracharia">Borracharia</ion-option>
-                <ion-option value="acessorios">Acessórios</ion-option>
-              </ion-select>
-            </ion-item>
-       
-        <ion-item>
-            <ion-input type="text" placeholder="CEP"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-input type="number" placeholder="Endereço"></ion-input>
-        </ion-item>
-      
-      </ion-list>
 </ion-content>

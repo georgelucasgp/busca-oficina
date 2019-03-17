@@ -1,24 +1,22 @@
-
-
 <ion-content padding>
-    <create-client-form></create-client-form>
-      <img class="img-home" src="assets/imgs/engrenagem.png"/>
 
-      <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+
     
-        <ion-item>
-          <ion-input type="email" placeholder="E-mail"
-          formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input type="password" placeholder="Senha"
-            formControlName="password"></ion-input>
-          </ion-item>
-        
-        <div class="container-buttons" padding>
-          <button round  block type="submit" ion-button [disabled]="loginForm.invalid">Login</button>
-          <button ion-button round block [navPush]="'create-user'">Criar conta</button>
-        </div>
-    </form>
+  <img class="img-home" src="assets/imgs/engrenagem.png" />
+
+  <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+
+    <ion-item>
+      <ion-input type="email" placeholder="E-mail" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
+    </ion-item>
+
+    <div class="container-buttons" padding>
+      <button round block type="submit" ion-button [disabled]="loginForm.invalid">Login</button>
+      <button ion-button round block [navPush]="'create-user'">Criar conta</button>
+    </div>
+  </form>
 
 </ion-content>

@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { CreateClientPage } from './create-client';
@@ -7,6 +8,7 @@ import { CreateClientPage } from './create-client';
     CreateClientPage,
   ],
   imports: [
+    ComponentsModule,
     IonicPageModule.forChild(CreateClientPage),
   ],
 })

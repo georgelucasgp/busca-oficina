@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-//import { AngularFireDatabase } from '@angular/fire/database';
 
 @IonicPage({
   name: 'start-page'
@@ -18,7 +17,6 @@ export class StartPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: Storage,
-    //public db: AngularFireDatabase
     ) {
   }
 
