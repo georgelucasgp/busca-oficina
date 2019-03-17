@@ -1,48 +1,50 @@
 <!-- Generated template for the CreateClientFormComponent component -->
 <div>
+  <form novalidate [formGroup]="createClientForm" (ngSubmit)="cadastrarCliente()">
+
   <ion-item>
-    <ion-input type="text" placeholder="Razão Social"></ion-input>
+    <ion-input type="text" placeholder="Razão Social" formControlName="razaosocial"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Fantasia"></ion-input>
+    <ion-input type="text" placeholder="Fantasia" formControlName="fantasia"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="number" placeholder="CNPJ"></ion-input>
+    <ion-input type="number" placeholder="CNPJ" formControlName="cnpj"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="number" placeholder="CEP"></ion-input>
+    <ion-input type="number" placeholder="CEP" formControlName="cep"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Endereço"></ion-input>
+    <ion-input type="text" placeholder="Endereço" formControlName="endereco"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="number" placeholder="Número"></ion-input>
+    <ion-input type="number" placeholder="Número" formControlName="numero"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Bairro"></ion-input>
+    <ion-input type="text" placeholder="Bairro" formControlName="bairro"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Cidade"></ion-input>
+    <ion-input type="text" placeholder="Cidade" formControlName="cidade"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Estado"></ion-input>
+    <ion-input type="text" placeholder="Estado" formControlName="estado"></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-input type="tel" placeholder="Telefone"></ion-input>
+      <ion-input type="tel" placeholder="Telefone" formControlName="telefone"></ion-input>
     </ion-item>
 
   <ion-item>
     <ion-label>Categoria</ion-label>
-    <ion-select [(ngModel)]="Categorias" multiple="true" cancelText="Voltar" okText="Ok">
+    <ion-select formControlName="categoria" multiple="true" cancelText="Voltar" okText="Ok">
       <ion-option value="mecanica">Mecânica</ion-option>
       <ion-option value="eletrica">Elétrica</ion-option>
       <ion-option value="lanternagem">Lanternagem</ion-option>
@@ -52,6 +54,6 @@
     </ion-select>
   </ion-item>
 
-  <button ion-button round block>Salvar</button>
-
+  <button type="submit" ion-button round block [disabled]="createClientForm.invalid">Salvar</button>
+</form>
 </div>
