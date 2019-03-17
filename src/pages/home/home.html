@@ -1,7 +1,7 @@
 
 
 <ion-content padding>
-    
+    <create-client-form></create-client-form>
       <img class="img-home" src="assets/imgs/engrenagem.png"/>
 
       <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
@@ -16,8 +16,8 @@
           </ion-item>
         
         <div class="container-buttons" padding>
-          <button round  type="submit" ion-button [disabled]="loginForm.invalid">Fazer Login</button>
-          <button ion-button round [navPush]="'create-user'">Criar conta</button>
+          <button round  block type="submit" ion-button [disabled]="loginForm.invalid">Login</button>
+          <button ion-button round block [navPush]="'create-user'">Criar conta</button>
         </div>
     </form>
 

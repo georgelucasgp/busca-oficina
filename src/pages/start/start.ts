@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the StartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Storage } from '@ionic/storage';
+//import { AngularFireDatabase } from '@angular/fire/database';
 
 @IonicPage({
   name: 'start-page'
@@ -17,11 +12,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  uid:string;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public storage: Storage,
+    //public db: AngularFireDatabase
+    ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StartPage');
+    this.storage.get('user')
+    .then((resolve) =>{
+      this.uid = resolve;
+    })
   }
 
 }

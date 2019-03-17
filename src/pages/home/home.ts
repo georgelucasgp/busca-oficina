@@ -5,6 +5,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+import { ReturnStatement } from '@angular/compiler';
+
 
 @Component({
   selector: 'page-home',
@@ -18,7 +21,8 @@ export class HomePage {
     public navParams: NavParams,
     public formbuilder: FormBuilder,
     public afAuth: AngularFireAuth,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public storage: Storage
     ) {
       this.loginForm = this.formbuilder.group({
         email: [null,[Validators.required,Validators.email]],
@@ -29,9 +33,11 @@ export class HomePage {
   submitLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(
       this.loginForm.value.email, this.loginForm.value.password)
-      .then(()=> {
-        this.navCtrl.setRoot('start-page')
-
+      .then((response)=> {
+        this.storage.set('user',response.user.uid)
+        .then(() => {
+          this.navCtrl.setRoot('start-page')
+        })
       })
       .catch((error) => {
         if(error.code == 'auth/user-not-found'){
@@ -52,6 +58,20 @@ export class HomePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  ionViewCanEnter(){
+   this.storage.get('user')
+   .then((resolve) => {
+    if(resolve.lenght > 0){
+      this.navCtrl.setRoot('start-page')
+    }else{
+      return true;
+    }
+   })
+   .catch((error) => {
+     ReturnStatement;
+   })
   }
 
 }
