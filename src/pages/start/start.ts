@@ -11,6 +11,13 @@ import { Storage } from '@ionic/storage';
 })
 export class StartPage {
 
+  client = [
+    { nome: 'Oficina do Rato', telefone: '123123', rua: 'Alagoas', cidade: 'imperatriz'},
+    { nome: 'Borracharia do Zé', telefone: '123123', rua: 'Alagoas', cidade: 'imperatriz'},
+    { nome: 'Auto Mecânica', telefone: '123123', rua: 'Alagoas', cidade: 'imperatriz'},
+    { nome: 'Lanternagem', telefone: '123123', rua: 'Alagoas', cidade: 'imperatriz'}
+  ]
+
   uid:string;
 
   constructor(
