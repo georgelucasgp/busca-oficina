@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -5,7 +6,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { ReturnStatement } from '@angular/compiler';
+//import { ReturnStatement } from '@angular/compiler';
+
 
 
 @Component({
@@ -21,7 +23,8 @@ export class HomePage {
     public formbuilder: FormBuilder,
     public afAuth: AngularFireAuth,
     public alertCtrl: AlertController,
-    public storage: Storage
+    public storage: Storage,
+    public http: Http
     ) {
       this.loginForm = this.formbuilder.group({
         email: [null,[Validators.required,Validators.email]],
@@ -50,6 +53,9 @@ export class HomePage {
         })
   }
 
+
+
+
   showAlert(title: string, subtitle: string) {
     const alert = this.alertCtrl.create({
       title: title,
@@ -59,18 +65,18 @@ export class HomePage {
     alert.present();
   }
 
-  ionViewCanEnter(){
-   this.storage.get('user')
-   .then((resolve) => {
-    if(resolve.lenght > 0){
-      this.navCtrl.setRoot('start-page')
-    }else{
-      return true;
-    }
-   })
-   .catch((error) => {
-     ReturnStatement;
-   })
-  }
-
+  // ionViewCanEnter(){
+  //  this.storage.get('user')
+  //  .then((resolve) => {
+  //   if(resolve.lenght > 0){
+  //     this.navCtrl.setRoot('start-page')
+  //   }else{
+  //     return true;
+  //   }
+  //  })
+  //  .catch((error) => {
+  //    ReturnStatement;
+  //  })
+  // }
+   
 }

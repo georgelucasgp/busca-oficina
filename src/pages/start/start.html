@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar>
     <ion-title>start-page</ion-title>
@@ -6,30 +5,22 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card *ngFor="let client of client">
-        <img class="img-start "src="assets/imgs/minhaoficina.jpg"/>
-        <ion-card-content>
-          <ion-card-title>
-            Oficina do Bento
-            </ion-card-title>
-          <p>
-            Especialidades: Mecânica, Elêtrica e Lanternagem
-          </p>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-list>
-          <ion-item *ngFor="let client of client">
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/minhaoficina.jpg">
-            </ion-thumbnail>
-            <h2>{{client.nome}}</h2>
-            <p>{{client.cidade}} {{client.rua}}</p>
-            <p>{{client.telefone}}</p>
-            <button ion-button clear item-end>View</button>
-          </ion-item>
-        </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let client of clientDb">
+      <ion-thumbnail item-start>
+        <img class="img-start" src="assets/imgs/minhaoficina.jpg">
+      </ion-thumbnail>
+      <h1>{{client.fantasia}}</h1>
+      <h2>{{client.categoria}}</h2>
+      <p>{{client.cidade}} {{client.rua}}</p>
+      <p>{{client.bairro}}</p>
+      <p>{{client.cep}}</p>
+      <p>{{client.telefone}}</p>
+      <!--  <button ion-button clear item-end>View</button> -->
+    </ion-item>
+  </ion-list>
 
   <button ion-button round [navPush]="'create-client'">Criar conta</button>
+  <button ion-button round (click)="logout()">Logout</button>
 
 </ion-content>

@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = HomePage;
+  rootPage: any;
 
   constructor(
     platform: Platform,
@@ -18,10 +18,11 @@ export class MyApp {
     splashScreen: SplashScreen,
     private storage: Storage
   ) {
+    
     platform.ready().then(() => {
       this.storage.get('user')
         .then((resolve) => {
-          if (resolve.length > 0) {
+          if (resolve.length != 0) {
             this.rootPage = StartPage;
           } else {
             this.rootPage = HomePage;

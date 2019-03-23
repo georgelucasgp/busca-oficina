@@ -55,11 +55,14 @@ export class CreateClientFormComponent {
   }
 
   cadastrarCliente() {
+
     this.db.database.ref('/Client').push(this.createClientForm.value)
     .then(() => {
       console.log('salvou');
       this.createClientForm.reset();
     })
   }
+
+
 
 }
