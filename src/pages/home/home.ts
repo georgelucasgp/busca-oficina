@@ -30,7 +30,9 @@ export class HomePage {
         email: [null,[Validators.required,Validators.email]],
         password: [null,[Validators.required,Validators.minLength(6)]]
       })
+      
   }
+
 
   submitLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(
@@ -39,7 +41,16 @@ export class HomePage {
         this.storage.set('user',response.user.uid)
         .then(() => {
           this.navCtrl.setRoot('start-page')
-        })
+        });
+      
+          this.http.get('https://busca-oficina.firebaseio.com/Usuario.json')
+            .map(res => res.json())
+            .subscribe(data => {
+              
+            })
+        
+
+
       })
       .catch((error) => {
         if(error.code == 'auth/user-not-found'){

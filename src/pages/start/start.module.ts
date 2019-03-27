@@ -10,7 +10,7 @@ import { StartPage } from './start';
     IonicPageModule.forChild(StartPage),
   ],
   exports:[
-    StartPage
+    StartPage,
   ]
 })
 export class StartPageModule {}

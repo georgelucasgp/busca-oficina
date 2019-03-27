@@ -1,3 +1,4 @@
+import { ImagePicker } from '@ionic-native/image-picker';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { StartPageModule } from './../pages/start/start.module';
 import { StartPage } from './../pages/start/start';
@@ -12,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from '../environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HttpModule } from '@angular/http'
     SplashScreen,
     AngularFireAuth,
     AngularFireDatabase,
+    ImagePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

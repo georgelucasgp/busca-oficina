@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -17,20 +18,24 @@ import { AlertController } from 'ionic-angular';
 export class CreateUserPage {
 
   registerForm: FormGroup;
+  
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public formbuilder: FormBuilder,
     public afAuth: AngularFireAuth,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public db: AngularFireDatabase
     ) {
       this.registerForm = this.formbuilder.group({
-        name: [null,[Validators.required, Validators.minLength(5)]],
+        username: [null,[Validators.required, Validators.minLength(5)]],
         email: [null,[Validators.required, Validators.email]],
         password: [null,[Validators.required, Validators.minLength(6)]],
         confirmPassword: [null,[Validators.required, Validators.minLength(6), ValidateConfirmPassword]]
-      })
+      });
+      
+      
   }
 
   submitForm(){
@@ -44,6 +49,10 @@ export class CreateUserPage {
       if(error.code == 'auth/email-already-in-use'){
         this.showAlert('Erro','Email já cadastrado');
       }
+      });
+      this.db.database.ref('/Usuarios').push(this.registerForm.value)
+      .then(() => {
+        console.log('salvou, prestou');
       })
   }
 

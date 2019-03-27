@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
@@ -10,12 +11,14 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class CreateClientFormComponent {
 
-  createClientForm: FormGroup
+  createClientForm: FormGroup;
+  dados:any ;
 
   constructor(
     public formbuilder: FormBuilder,
     public http: Http,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    public storage: Storage
   ) {
     this.createClientForm = this.formbuilder.group({
       razaosocial: [null, [Validators.required, Validators.minLength(10)]],
@@ -34,19 +37,23 @@ export class CreateClientFormComponent {
 
   }
 
+
+
+
+
   buscaCep() {
     const cepValue = this.createClientForm.controls['cep'].value;
     const isValid = this.createClientForm.controls['cep'].valid;
     if (isValid) {
       this.http.get(`https://viacep.com.br/ws/${cepValue}/json/`)
-      .map( res => res.json())
-      .subscribe(data => {
-        this.insereValoresEndereco(data);
-      })
+        .map(res => res.json())
+        .subscribe(data => {
+          this.insereValoresEndereco(data);
+        })
     }
   }
 
-  insereValoresEndereco(dados){
+  insereValoresEndereco(dados) {
     this.createClientForm.controls['rua'].setValue(dados.logradouro);
     this.createClientForm.controls['bairro'].setValue(dados.bairro);
     this.createClientForm.controls['cidade'].setValue(dados.localidade);
@@ -55,14 +62,21 @@ export class CreateClientFormComponent {
   }
 
   cadastrarCliente() {
+    this.storage.get('user')
+    .then((val) => {
+      console.log('pegar', val);
+      this.dados = this.createClientForm.value;
+      this.dados['idclient'] = val;
+      this.db.database.ref('/Client').push(this.dados)
+      .then(() => {
+        console.log('salvou');
+        this.createClientForm.reset();
+      })
 
-    this.db.database.ref('/Client').push(this.createClientForm.value)
-    .then(() => {
-      console.log('salvou');
-      this.createClientForm.reset();
-    })
-  }
+    });
 
+
+    }
 
 
 }
