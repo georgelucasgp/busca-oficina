@@ -13,13 +13,14 @@ export class CreateClientFormComponent {
 
   createClientForm: FormGroup;
   dados:any ;
-
+  
   constructor(
     public formbuilder: FormBuilder,
     public http: Http,
     public db: AngularFireDatabase,
     public storage: Storage
   ) {
+   
     this.createClientForm = this.formbuilder.group({
       razaosocial: [null, [Validators.required, Validators.minLength(10)]],
       fantasia: [null, [Validators.required, Validators.minLength(10)]],
@@ -75,8 +76,10 @@ export class CreateClientFormComponent {
 
     });
 
-
     }
 
 
+    //Imagem
+
+ 
 }

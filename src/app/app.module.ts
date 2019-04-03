@@ -1,3 +1,5 @@
+import { FirebaseService } from './../pages/service/firebase.service';
+import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { StartPageModule } from './../pages/start/start.module';
@@ -40,6 +42,8 @@ import { HttpModule } from '@angular/http';
     AngularFireAuth,
     AngularFireDatabase,
     ImagePicker,
+    Crop,
+    FirebaseService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
