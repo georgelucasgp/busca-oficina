@@ -60,8 +60,6 @@
 
   <button type="submit" ion-button round block [disabled]="createClientForm.invalid">Salvar</button>
 
-
-  <button ion-button round (click)="getPhoto()">TirarFoto</button>
   
 </form>
 
@@ -69,20 +67,20 @@
 </div>
 
 <ion-item>
-  <ion-label fixed>Avatar</ion-label>
-  <ion-avatar item-end>
-    <img src="{{imgPreview}}" (click)="getPhoto()">
-  </ion-avatar>
+  <ion-row>
+    <ion-col width-50>
+      <button ion-button color="danger" type="button" full round large (click)="takePhoto()">
+                  <ion-icon name="md-camera"></ion-icon>
+              </button>
+    </ion-col>
+    <ion-col width-50>
+      <button ion-button color="secondary" type="button" full round large (click)="selectPhoto()">
+                  <ion-icon name="md-image"></ion-icon>
+              </button>
+    </ion-col>
+  </ion-row>
+</ion-item>
+<ion-item>
+  <img class="img-responsive" src="{{ myPhotoURL }}" />
 </ion-item>
 
-<ion-item>
-  <p>{{imageURI}}</p>
-  <button ion-button color="secondary" (click)="getImage()">Get Image</button>
-</ion-item>
-<ion-item>
-  <h4>Image Preview</h4>
-  <img src="{{imageFileName}}" *ngIf="imageFileName" alt="Ionic File" width="300" />
-</ion-item>
-<ion-item>
-  <button ion-button (click)="uploadFile()">Upload</button>
-</ion-item>
