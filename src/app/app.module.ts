@@ -1,4 +1,3 @@
-import { FirebaseService } from './../pages/service/firebase.service';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -16,6 +15,7 @@ import { firebaseConfig } from '../environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
+import { DataProvider } from '../providers/data/data';
 
 @NgModule({
   declarations: [
@@ -43,8 +43,8 @@ import { HttpModule } from '@angular/http';
     AngularFireDatabase,
     ImagePicker,
     Crop,
-    FirebaseService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
   ]
 })
 export class AppModule {}

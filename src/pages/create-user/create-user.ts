@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ValidateConfirmPassword } from '../../validators/confirmPassword';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -26,10 +27,11 @@ export class CreateUserPage {
     public formbuilder: FormBuilder,
     public afAuth: AngularFireAuth,
     public alertCtrl: AlertController,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    public storage: Storage
     ) {
-      this.registerForm = this.formbuilder.group({
-        username: [null,[Validators.required, Validators.minLength(5)]],
+      this.registerForm = this.formbuilder.group({  
+        name: [null,[Validators.required, Validators.minLength(5)]],
         email: [null,[Validators.required, Validators.email]],
         password: [null,[Validators.required, Validators.minLength(6)]],
         confirmPassword: [null,[Validators.required, Validators.minLength(6), ValidateConfirmPassword]]
@@ -37,6 +39,7 @@ export class CreateUserPage {
       
       
   }
+
 
   submitForm(){
     this.afAuth.auth.createUserWithEmailAndPassword(
@@ -50,9 +53,9 @@ export class CreateUserPage {
         this.showAlert('Erro','Email já cadastrado');
       }
       });
-      this.db.database.ref('/Usuarios').push(this.registerForm.value)
+      this.db.database.ref('/usuarios').push(this.registerForm.value)
       .then(() => {
-        console.log('salvou, prestou');
+        
       })
   }
 

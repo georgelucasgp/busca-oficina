@@ -6,7 +6,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-//import { ReturnStatement } from '@angular/compiler';
 
 
 
@@ -33,6 +32,8 @@ export class HomePage {
       
   }
 
+  
+
 
   submitLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(
@@ -48,8 +49,6 @@ export class HomePage {
             .subscribe(data => {
               
             })
-        
-
 
       })
       .catch((error) => {
@@ -75,19 +74,5 @@ export class HomePage {
     });
     alert.present();
   }
-
-  // ionViewCanEnter(){
-  //  this.storage.get('user')
-  //  .then((resolve) => {
-  //   if(resolve.lenght > 0){
-  //     this.navCtrl.setRoot('start-page')
-  //   }else{
-  //     return true;
-  //   }
-  //  })
-  //  .catch((error) => {
-  //    ReturnStatement;
-  //  })
-  // }
-   
+  
 }

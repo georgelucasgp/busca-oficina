@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 
 
 
+
 @IonicPage({
   name: 'start-page'
 })
@@ -18,6 +19,7 @@ import 'rxjs/add/operator/map';
 export class StartPage {
 
   clientDb;
+ 
 
   constructor(
     public navCtrl: NavController,
@@ -26,8 +28,11 @@ export class StartPage {
     public http: Http,
     public afAuth: AngularFireAuth
   ) {
+    
   }
 
+
+ 
   // Método de logout
   logout() {
     return this.afAuth.auth.signOut()
@@ -39,12 +44,10 @@ export class StartPage {
 
 
   ionViewDidLoad() {
-       this.storage.get('user')
-       .then((val) => {
-         console.log('pegar', val);
-       });
-
+    
     this.pegarDadosFirebase();
+    
+   
 
   }
 

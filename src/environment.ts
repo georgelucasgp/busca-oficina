@@ -6,3 +6,4 @@ export const firebaseConfig = {
     storageBucket: "busca-oficina.appspot.com",
     messagingSenderId: "564990024762"
   };
+
