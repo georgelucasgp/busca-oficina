@@ -97,7 +97,7 @@ export class CreateClientFormComponent {
       console.log("ERROR -> " + JSON.stringify(error));
     });
   }
-  
+
   private uploadPhoto(): void {
     this.myPhotosRef.child(this.afAuth.auth.currentUser.uid)
       .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
@@ -106,6 +106,7 @@ export class CreateClientFormComponent {
       });
   }
 
+  //////
   // private generateUUID(): any {
   //   var d = new Date().getTime();
   //   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
