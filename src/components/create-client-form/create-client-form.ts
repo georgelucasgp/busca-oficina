@@ -1,4 +1,4 @@
-import { Camera } from '@ionic-native/camera';
+
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -11,26 +11,26 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
 
 
-import { LoadingController, ToastController } from 'ionic-angular';
-import { FileTransfer} from '@ionic-native/file-transfer/ngx';
-
+import { LoadingController, ToastController, NavParams } from 'ionic-angular';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { Camera } from 'ionic-native';
 
 
 
 @Component({
   selector: 'create-client-form',
   templateUrl: 'create-client-form.html',
-  providers:[Camera,AngularFireStorage,FileTransfer]
+  providers: [Camera,AngularFireStorage, FileTransfer]
 })
 export class CreateClientFormComponent {
 
   createClientForm: FormGroup;
-  dados:any ;
+  dados: any;
   key;
   myPhotosRef: any;
   myPhoto: any;
   myPhotoURL: any;
-  
+
   constructor(
     public formbuilder: FormBuilder,
     public http: Http,
@@ -39,16 +39,16 @@ export class CreateClientFormComponent {
     public camera: Camera,
     public Afs: AngularFireStorage,
     public afAuth: AngularFireAuth,
+    public Afd: AngularFireDatabase,
     public transfer: FileTransfer,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public navParams: NavParams,
   ) {
     //console.log(this.afAuth.auth.currentUser.uid);
 
     this.myPhotosRef = firebase.storage().ref('/Photos/');
-    
 
-    
 
     this.createClientForm = this.formbuilder.group({
       razaosocial: [null, [Validators.required, Validators.minLength(10)]],
@@ -70,11 +70,11 @@ export class CreateClientFormComponent {
 
 
   takePhoto() {
-    this.camera.getPicture({
+    Camera.getPicture({
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.CAMERA,
-      encodingType: this.camera.EncodingType.PNG,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      encodingType: Camera.EncodingType.PNG,
       saveToPhotoAlbum: true
     }).then(imageData => {
       this.myPhoto = imageData;
@@ -85,11 +85,11 @@ export class CreateClientFormComponent {
   }
 
   selectPhoto(): void {
-    this.camera.getPicture({
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.DATA_URL,
+    Camera.getPicture({
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: Camera.DestinationType.DATA_URL,
       quality: 100,
-      encodingType: this.camera.EncodingType.PNG,
+      encodingType: Camera.EncodingType.PNG,
     }).then(imageData => {
       this.myPhoto = imageData;
       this.uploadPhoto();
@@ -99,14 +99,13 @@ export class CreateClientFormComponent {
   }
 
   private uploadPhoto(): void {
-    this.myPhotosRef.child(this.afAuth.auth.currentUser.uid)
+    this.myPhotosRef.child(this.afAuth.auth.currentUser.uid).child('myPhoto.png')
       .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
       .then((savedPicture) => {
         this.myPhotoURL = savedPicture.downloadURL;
       });
   }
 
-  //////
   // private generateUUID(): any {
   //   var d = new Date().getTime();
   //   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
@@ -117,34 +116,6 @@ export class CreateClientFormComponent {
   //   return uuid;
   // }
 
-  // getPhoto(){
-  //   const options: CameraOptions = {
-  //     quality: 50,
-  //     destinationType: this.camera.DestinationType.DATA_URL,
-  //     encodingType: this.camera.EncodingType.JPEG,
-  //     mediaType:this.camera.MediaType.PICTURE,
-  //     correctOrientation: true
-  //   };
-
-  //   this.camera.getPicture(options).then((imageData) => {
-  //     this.savePhotos(imageData)
-  //   }, (err) => {
-  //     alert(err);
-  //   });
-  // }
-
-  // savePhotos(imageData){
-  //   let d = new Date();
-  //   let title = d.getTime();
-
-  //   this.Afs.storage.ref(title+'.jpg').putString(imageData,'base64').then((image)=>{
-  //     this.db.list('Usuario/'+this.afAuth.auth.currentUser.uid+"/agentePhotos/").push({
-  //       photo: image.downloadURL
-  //     });
-  //   }).catch(e=>{
-  //     alert(JSON.stringify(e));
-  //   })
-  // }
 
 
   buscaCep() {
@@ -165,25 +136,25 @@ export class CreateClientFormComponent {
     this.createClientForm.controls['cidade'].setValue(dados.localidade);
     this.createClientForm.controls['estado'].setValue(dados.uf);
 
-    
+
 
   }
 
-cadastrarCliente() {
+  cadastrarCliente() {
     this.storage.get('user')
-    .then((val) => {
-      this.dados = this.createClientForm.value;
-      this.dados['idclient'] = val;
-      
-      this.db.database.ref('/Client').push(this.dados)
-      .then(() => {
-        console.log('salvou');
-        this.createClientForm.reset();
-      })
+      .then((val) => {
+        this.dados = this.createClientForm.value;
+        this.dados['idclient'] = val;
 
-    });
+        this.db.database.ref('/Client').push(this.dados)
+          .then(() => {
+            console.log('salvou');
+            this.createClientForm.reset();
+          })
 
-    }
+      });
 
- 
   }
+
+
+}

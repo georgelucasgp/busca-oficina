@@ -1,4 +1,4 @@
-
+import { Camera } from 'ionic-native';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -17,6 +17,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { DataProvider } from '../providers/data/data';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DataProvider } from '../providers/data/data';
     AngularFireDatabase,
     ImagePicker,
     Crop,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider
   ]
