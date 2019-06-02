@@ -1,4 +1,3 @@
-
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -11,9 +10,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
 
 
-import { LoadingController, ToastController, NavParams } from 'ionic-angular';
+import { LoadingController, ToastController, NavParams, NavController } from 'ionic-angular';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { Camera } from 'ionic-native';
+import { StartPage } from '../../pages/start/start';
 
 
 
@@ -44,6 +44,7 @@ export class CreateClientFormComponent {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public navParams: NavParams,
+    public nvCtrl: NavController
   ) {
     //console.log(this.afAuth.auth.currentUser.uid);
 
@@ -99,7 +100,10 @@ export class CreateClientFormComponent {
   }
 
   private uploadPhoto(): void {
-    this.myPhotosRef.child(this.afAuth.auth.currentUser.uid).child('myPhoto.png')
+    let d = new Date();
+    let title = d.getTime();
+
+    this.myPhotosRef.child(this.afAuth.auth.currentUser.uid).child(title+'.png')
       .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
       .then((savedPicture) => {
         savedPicture.ref.getDownloadURL()
@@ -154,13 +158,12 @@ export class CreateClientFormComponent {
 
         this.db.database.ref('/Client').push(this.dados)
           .then(() => {
-            console.log('salvou');
-            this.createClientForm.reset();
+                this.createClientForm.reset();
+                this.nvCtrl.setRoot(StartPage);
           })
 
       });
 
   }
-
 
 }

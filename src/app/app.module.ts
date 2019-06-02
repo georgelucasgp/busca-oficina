@@ -13,7 +13,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from '../environment';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { DataProvider } from '../providers/data/data';
@@ -30,7 +30,8 @@ import { DataProvider } from '../providers/data/data';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     StartPageModule,
-    HttpModule
+    HttpModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
