@@ -102,7 +102,12 @@ export class CreateClientFormComponent {
     this.myPhotosRef.child(this.afAuth.auth.currentUser.uid).child('myPhoto.png')
       .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
       .then((savedPicture) => {
-        this.myPhotoURL = savedPicture.downloadURL;
+        savedPicture.ref.getDownloadURL()
+        .then(data => {
+          console.log(data)
+          this.myPhotoURL = data
+        });
+      
       });
   }
 
@@ -144,7 +149,8 @@ export class CreateClientFormComponent {
     this.storage.get('user')
       .then((val) => {
         this.dados = this.createClientForm.value;
-        this.dados['idclient'] = val;
+        this.dados['idclient'] = val; 
+        this.dados['url'] = this.myPhotoURL
 
         this.db.database.ref('/Client').push(this.dados)
           .then(() => {

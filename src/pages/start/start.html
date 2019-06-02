@@ -24,7 +24,7 @@
 
           <ion-list *ngFor="let client of clientDb">
           <ion-card>
-              <img class="img-start" src="assets/imgs/minhaoficina.jpg">
+              <img class="img-start" src="{{ client.url }}">
               <ion-card-content>
                 <ion-card-title>
                     {{client.fantasia}}
