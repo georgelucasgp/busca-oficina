@@ -30,6 +30,7 @@ export class CreateClientFormComponent {
   myPhotosRef: any;
   myPhoto: any;
   myPhotoURL: any;
+  meuuid:any;
 
   constructor(
     public formbuilder: FormBuilder,
@@ -46,7 +47,7 @@ export class CreateClientFormComponent {
     public navParams: NavParams,
     public nvCtrl: NavController
   ) {
-    //console.log(this.afAuth.auth.currentUser.uid);
+    this.meuuid = this.afAuth.auth.currentUser.uid;
 
     this.myPhotosRef = firebase.storage().ref('/Photos/');
 
@@ -150,11 +151,10 @@ export class CreateClientFormComponent {
   }
 
   cadastrarCliente() {
-    this.storage.get('user')
-      .then((val) => {
+  
         this.dados = this.createClientForm.value;
-        this.dados['idclient'] = val; 
-        this.dados['url'] = this.myPhotoURL
+        this.dados['idclient'] = this.meuuid;
+        this.dados['url'] = this.myPhotoURL;
 
         this.db.database.ref('/Client').push(this.dados)
           .then(() => {
@@ -162,7 +162,7 @@ export class CreateClientFormComponent {
                 this.nvCtrl.setRoot(StartPage);
           })
 
-      });
+     
 
   }
 
