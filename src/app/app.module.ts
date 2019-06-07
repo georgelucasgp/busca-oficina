@@ -1,3 +1,4 @@
+import { FilterPage } from './../pages/filter/filter';
 import { Camera } from 'ionic-native';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker';
@@ -22,7 +23,8 @@ import { DataProvider } from '../providers/data/data';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    FilterPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { DataProvider } from '../providers/data/data';
   entryComponents: [
     MyApp,
     HomePage,
-    StartPage
+    StartPage,
+    FilterPage
   ],
   providers: [
     StatusBar,

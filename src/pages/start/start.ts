@@ -1,10 +1,11 @@
 import { HomePage } from './../home/home';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { FilterPage } from '../filter/filter';
 
 
 
@@ -26,9 +27,12 @@ export class StartPage {
     public navParams: NavParams,
     public storage: Storage,
     public http: Http,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private event: Events
   ) {
-    
+    this.event.subscribe("change.client",(data)=> {
+      this.clientDb = data
+    })
   }
 
 
@@ -54,15 +58,15 @@ export class StartPage {
     this.http.get('https://busca-oficina.firebaseio.com/Client.json')
       .map(res => res.json())
       .subscribe(data => {
-        this.trataDados(data);
+        this.clientDb = Object.keys(data).map(i => data[i]);
+        
       })
   }
 
-  trataDados(dados) {
-    this.clientDb = Object.keys(dados).map(i => dados[i]);
-
-
+ 
+  navigationtofilter() {
+    this.navCtrl.push(FilterPage, {clientDb:this.clientDb})
   }
 
-  
+ 
 }

@@ -23,7 +23,7 @@
 
     <ion-item>
         <ion-label>Categoria</ion-label>
-        <ion-select [(ngModel)]="toppings" multiple="true">
+        <ion-select [(ngModel)]="toppings" multiple="false">
           <ion-option value="mecanica">Mecânica</ion-option>
           <ion-option value="eletrica">Elétrica</ion-option>
           <ion-option value="lanternagem">Lanternagem</ion-option>
@@ -34,7 +34,7 @@
       </ion-item>
 <div class="container-buttons">
 
-    <button ion-button round full>Buscar</button>
+    <button ion-button round full (click)="filtrar()">Buscar</button>
 
 </div>
       

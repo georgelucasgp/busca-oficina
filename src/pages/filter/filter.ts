@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 /**
  * Generated class for the FilterPage page.
@@ -17,11 +17,34 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FilterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  clientdb:any;
+  toppings:any;
+  cidade: any;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private event: Events
+    ) {
+      this.clientdb = this.navParams.get("clientDb");
+      console.log(this.clientdb)
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FilterPage');
+
+
+  filtrar(){ 
+    let newclientdb = [];
+    for(let client in this.clientdb){
+      const { categoria } = this.clientdb[client];
+      for(let id in categoria){
+        if(categoria[id] == this.toppings ){
+          newclientdb.push(this.clientdb[client])
+        }
+      }
   }
 
+  this.event.publish("change.client", newclientdb);
+  this.navCtrl.pop()
+
+}
 }
