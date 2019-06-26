@@ -37,30 +37,37 @@ export class PerfilPage {
  
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public db: AngularFireDatabase) {
-    this.carregarMapa();
+    // this.carregarMapa();
   }
 
-  carregarMapa(){
-    navigator.geolocation.getCurrentPosition((pos)=>{
-      this.coords[0] = pos.coords.latitude;
-      this.coords[1] = pos.coords.longitude;
-      console.log(this.coords[0]);
-      console.log(this.coords[1]);
+  // carregarMapa(){
+  //   navigator.geolocation.getCurrentPosition((pos)=>{
+  //     this.coords[0] = pos.coords.latitude;
+  //     this.coords[1] = pos.coords.longitude;
       
-      let mapa = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-        zoom: 15
-      });
-      this.marker = new google.maps.Marker({position: {lat:pos.coords.latitude,lng:pos.coords.longitude}, map: mapa});
-    })
+  //     let mapa = new google.maps.Map(document.getElementById('map'), {
+  //       center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
+  //       zoom: 15
+  //     });
+  //     this.marker = new google.maps.Marker({position: {lat:pos.coords.latitude,lng:pos.coords.longitude}, map: mapa});
+  //   })
    
-  }
+  // }
 
 ngOnInit(){
   let key = this.navParams.get("key");
   this.db.object('/Client/'+key).snapshotChanges().subscribe(clientes=>{
    
-    this.clientdb2 = clientes.payload.val()
+    this.clientdb2 = clientes.payload.val();
+
+    let mapa = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: this.clientdb2['lat'], lng: this.clientdb2['long']},
+      zoom: 17
+    });
+
+    this.marker = new google.maps.Marker({position: {lat:this.clientdb2['lat'],lng:this.clientdb2['long']}, map: mapa});
+
+   
 
   })
 

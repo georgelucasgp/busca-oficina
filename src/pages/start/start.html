@@ -1,17 +1,15 @@
 
 <ion-header>
-    
-
+    <ion-navbar>
     <button class="botoes"ion-button round [navPush]="'create-client'">Cadastrar Oficina</button>
     <button class="botoes" ion-button round (click)="logout()">Sair</button>
-    <button class="botoes"ion-button round [navPush]="'page-perfil'">Perfil</button>
 
 
 <div class="header1">
   
   <ion-icon (click)="navigationtofilter()" name="search"></ion-icon>
 </div>
-
+</ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -40,10 +38,11 @@
                 <img src="{{ client.url }}">
               </ion-thumbnail>
               <h2>{{client.fantasia}}</h2>
-              <h5>{{client.categoria}}</h5>
-              <button ion-button clear item-end (click)="redirectToPerfil(client.key)">View</button>
+              <h5>Categoria: {{client.categoria}}</h5>
+              <button ion-button clear item-end (click)="redirectToPerfil(client.key)">ABRIR</button>
             </ion-item>
           </ion-list>
+          
       
 
 
