@@ -1,3 +1,4 @@
+
 import { Http } from '@angular/http';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,6 +7,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { StartPage } from '../start/start';
 
 
 
@@ -41,7 +43,7 @@ export class HomePage {
       .then((response)=> {
         this.storage.set('user',response.user.uid)
         .then(() => {
-          this.navCtrl.setRoot('start-page')
+          this.navCtrl.setRoot(StartPage)
         });
       
           this.http.get('https://busca-oficina.firebaseio.com/Usuario.json')

@@ -18,6 +18,8 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { DataProvider } from '../providers/data/data';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
+
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { DataProvider } from '../providers/data/data';
     IonicStorageModule.forRoot(),
     StartPageModule,
     HttpModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    PerfilPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

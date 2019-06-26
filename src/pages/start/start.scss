@@ -1,4 +1,45 @@
 page-start {
+.butãobuscar{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.botoes{
+    background-color: silver;
+    margin-right: 190px;
+
+}
+.item-md{
+    padding: -50px;
+}
+
+.item-md ion-thumbnail ion-img,
+.item-md ion-thumbnail img {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.item-md h2 {
+    margin: 8px 0;
+    font-size: 1.6rem;
+    font-weight: bolder;
 
     }
 
+.header1{
+    width: 100%;
+    height: 130px;
+}
+ion-icon{
+    font-size: 50px;
+    position: absolute;
+    left:350px;
+    top:80px;
+
+}
+
+}

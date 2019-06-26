@@ -19,6 +19,8 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyCOGJbKgL7N_HnmmnPcnksXteNUFirpsT4" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyCOGJbKgL7N_HnmmnPcnksXteNUFirpsT4" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -93,4 +95,6 @@
     <allow-navigation href="http://192.168.2.4:8100" />
     <allow-navigation href="http://192.168.43.127:8100" />
     <allow-navigation href="http://172.16.12.131:8100" />
+    <allow-navigation href="http://192.168.0.118:8100" />
+    <allow-navigation href="http://10.0.0.11:8100" />
 </widget>

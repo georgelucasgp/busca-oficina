@@ -27,7 +27,6 @@ export class FilterPage {
     private event: Events
     ) {
       this.clientdb = this.navParams.get("clientDb");
-      console.log(this.clientdb)
   }
 
 
@@ -45,6 +44,8 @@ export class FilterPage {
 
   this.event.publish("change.client", newclientdb);
   this.navCtrl.pop()
+      
 
 }
+
 }

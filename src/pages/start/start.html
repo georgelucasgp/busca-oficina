@@ -1,28 +1,25 @@
+
+<ion-header>
+    
+
+    <button class="botoes"ion-button round [navPush]="'create-client'">Cadastrar Oficina</button>
+    <button class="botoes" ion-button round (click)="logout()">Sair</button>
+    <button class="botoes"ion-button round [navPush]="'page-perfil'">Perfil</button>
+
+
+<div class="header1">
+  
+  <ion-icon (click)="navigationtofilter()" name="search"></ion-icon>
+</div>
+
+</ion-header>
+
 <ion-content padding>
 
+  
 
 
-<!-- 
-            <ion-list *ngFor="let client of clientDb">
-                <ion-card>
-                    <ion-card-content>
-              <ion-thumbnail item-start>
-                <img class="img-start" src="assets/imgs/minhaoficina.jpg">
-              </ion-thumbnail>
-              <h2>{{client.fantasia}}</h2>
-              <h3>{{client.categoria}}</h3>
-              <p>{{client.cidade}} {{client.rua}}</p>
-              <p>{{client.bairro}}</p>
-              <p>{{client.cep}}</p>
-              
-            </ion-card-content>
-          </ion-card>
-          </ion-list> -->
-
-
-          <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
-
-          <ion-list *ngFor="let client of clientDb">
+          <!-- <ion-list *ngFor="let client of clientDb">
           <ion-card>
               <img class="img-start" src="{{ client.url }}">
               <ion-card-content>
@@ -30,22 +27,31 @@
                     {{client.fantasia}}
                   </ion-card-title>
                   <h2>{{client.categoria}}</h2>
-                  <p>{{client.rua}}, {{client.cidade}}</p>
-                  <p>{{client.bairro}}</p>
-                  <p>{{client.numero}}</p>
+                  <p>{{client.rua}}, {{client.bairro}}</p>
+                  <p>{{client.cidade}}, {{client.estado}}</p>
+                  <p>{{client.telefone}}</p>
               </ion-card-content>
             </ion-card>
+          </ion-list> -->
+
+          <ion-list>
+            <ion-item *ngFor="let client of clientDb">
+              <ion-thumbnail item-start>
+                <img src="{{ client.url }}">
+              </ion-thumbnail>
+              <h2>{{client.fantasia}}</h2>
+              <h5>{{client.categoria}}</h5>
+              <button ion-button clear item-end (click)="redirectToPerfil(client.key)">View</button>
+            </ion-item>
           </ion-list>
       
 
 
 
 
-  <button ion-button round [navPush]="'create-client'">Criar conta</button>
-  <button ion-button round (click)="logout()">Logout</button>
-  <button ion-button round [navPush]="'profile-page'">Profile</button>
-  <button ion-button round [navPush]="'imagemteste'">imagem</button>
-  <button ion-button round (click)="navigationtofilter()">Filtro de busca</button>
+  
+  
+
   
 
 

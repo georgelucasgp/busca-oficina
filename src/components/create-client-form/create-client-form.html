@@ -67,18 +67,18 @@
   <ion-item>
     <ion-label>Categoria</ion-label>
     <ion-select formControlName="categoria" multiple="true" cancelText="Voltar" okText="Ok" placeholder="Selecione">
-      <ion-option value="mecanica">Mecânica</ion-option>
-      <ion-option value="eletrica">Elétrica</ion-option>
-      <ion-option value="lanternagem">Lanternagem</ion-option>
-      <ion-option value="comercio-pneu">Comércio de Pneu</ion-option>
-      <ion-option value="borracharia">Borracharia</ion-option>
-      <ion-option value="acessorios">Acessórios</ion-option>
+      <ion-option value="Mecânica">Mecânica</ion-option>
+      <ion-option value="Elétrica">Elétrica</ion-option>
+      <ion-option value="Lanternagem">Lanternagem</ion-option>
+      <ion-option value="Comercio de pneu">Comércio de Pneu</ion-option>
+      <ion-option value="Borracharia">Borracharia</ion-option>
+      <ion-option value="Acessórios">Acessórios</ion-option>
     </ion-select>
   </ion-item>
 
   
 
-  <button type="submit" ion-button round block [disabled]="createClientForm.invalid">Salvar</button>
+  <button type="submit" ion-button round block [disabled]="createClientForm.invalid" [disabled]="myPhoto">Salvar</button>
 
   
 

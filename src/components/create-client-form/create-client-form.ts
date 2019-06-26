@@ -8,19 +8,20 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 //import { Observable } from 'rxjs';
 import firebase from 'firebase';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
-import { LoadingController, ToastController, NavParams, NavController } from 'ionic-angular';
+import { LoadingController, ToastController, NavParams, NavController, AlertController } from 'ionic-angular';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { Camera } from 'ionic-native';
 import { StartPage } from '../../pages/start/start';
-
+declare let google;
 
 
 @Component({
   selector: 'create-client-form',
   templateUrl: 'create-client-form.html',
-  providers: [Camera,AngularFireStorage, FileTransfer]
+  providers: [Camera,AngularFireStorage, FileTransfer,Geolocation]
 })
 export class CreateClientFormComponent {
 
@@ -31,6 +32,8 @@ export class CreateClientFormComponent {
   myPhoto: any;
   myPhotoURL: any;
   meuuid:any;
+  coords = [2];
+  marker:any;
 
   constructor(
     public formbuilder: FormBuilder,
@@ -45,11 +48,18 @@ export class CreateClientFormComponent {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public navParams: NavParams,
-    public nvCtrl: NavController
+    public nvCtrl: NavController,
+    public alertctrl: AlertController,
+    public geolocation: Geolocation
   ) {
     this.meuuid = this.afAuth.auth.currentUser.uid;
-
     this.myPhotosRef = firebase.storage().ref('/Photos/');
+
+    navigator.geolocation.getCurrentPosition((pos)=>{
+      this.coords[0] = pos.coords.latitude;
+      this.coords[1] = pos.coords.longitude;
+          
+    });
 
 
     this.createClientForm = this.formbuilder.group({
@@ -67,6 +77,10 @@ export class CreateClientFormComponent {
 
     })
 
+  }
+
+  ionViewDidLoad(){
+  
   }
 
 
@@ -128,6 +142,7 @@ export class CreateClientFormComponent {
 
 
 
+
   buscaCep() {
     const cepValue = this.createClientForm.controls['cep'].value;
     const isValid = this.createClientForm.controls['cep'].valid;
@@ -151,19 +166,29 @@ export class CreateClientFormComponent {
   }
 
   cadastrarCliente() {
-  
+    
+    if(this.myPhotoURL){
         this.dados = this.createClientForm.value;
         this.dados['idclient'] = this.meuuid;
         this.dados['url'] = this.myPhotoURL;
+        this.dados['lat'] = this.coords[0];
+        this.dados['long'] = this.coords[1];
 
         this.db.database.ref('/Client').push(this.dados)
           .then(() => {
                 this.createClientForm.reset();
                 this.nvCtrl.setRoot(StartPage);
+                
           })
 
      
-
+        }else{
+          let alert = this.alertctrl.create({
+            title: "Insira a foto"
+                })
+                alert.present();
+          
+        }
   }
 
 }

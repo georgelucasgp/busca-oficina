@@ -1,3 +1,4 @@
+import { PerfilPage } from './../perfil/perfil';
 import { HomePage } from './../home/home';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
@@ -58,14 +59,29 @@ export class StartPage {
     this.http.get('https://busca-oficina.firebaseio.com/Client.json')
       .map(res => res.json())
       .subscribe(data => {
-        this.clientDb = Object.keys(data).map(i => data[i]);
+        this.clientDb = Object.keys(data).map(i => {
+          
+          data[i]["key"]=i
+          return data[i];
+        });
         
+
       })
   }
 
  
   navigationtofilter() {
-    this.navCtrl.push(FilterPage, {clientDb:this.clientDb})
+    this.http.get('https://busca-oficina.firebaseio.com/Client.json')
+      .map(res => res.json())
+      .subscribe(data => {
+        this.clientDb = Object.keys(data).map(i => data[i]);
+        this.navCtrl.push(FilterPage, {clientDb:this.clientDb})
+      })
+   
+  }
+
+  redirectToPerfil(key){
+    this.navCtrl.push(PerfilPage,{key:key})
   }
 
  
