@@ -60,7 +60,6 @@ export class StartPage {
       .map(res => res.json())
       .subscribe(data => {
         this.clientDb = Object.keys(data).map(i => {
-          
           data[i]["key"]=i
           return data[i];
         });
@@ -74,7 +73,10 @@ export class StartPage {
     this.http.get('https://busca-oficina.firebaseio.com/Client.json')
       .map(res => res.json())
       .subscribe(data => {
-        this.clientDb = Object.keys(data).map(i => data[i]);
+        this.clientDb = Object.keys(data).map(i =>{ 
+          data[i]["key"]=i
+          return data[i]
+        });
         this.navCtrl.push(FilterPage, {clientDb:this.clientDb})
       })
    
